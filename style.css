@@ -1,0 +1,329 @@
+/* Estilos CSS */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap'); /* Uma fonte futurista para títulos */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap'); /* Para o corpo do texto */
+
+:root {
+    --neon-blue: #00FFFF; /* Ciano forte para títulos */
+    --neon-pink: #FF00FF; /* Rosa forte para botões */
+    --neon-green: #00FF00; /* Verde forte para detalhes */
+    --dark-bg: #000000;
+    --text-color: #E0E0E0; /* Cinza claro para texto */
+    --correct-answer: #00FF00; /* Cor para resposta correta */
+    --wrong-answer: #FF0000; /* Cor para resposta incorreta */
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif; /* Fonte padrão para o corpo do texto */
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+    overflow-x: hidden; /* Evita rolagem horizontal indesejada */
+}
+
+/* Fundo de Animação (Partículas/Código Binário) */
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    background-color: var(--dark-bg); /* Garante que o fundo seja preto puro */
+}
+
+/* Canvas para a animação de fundo (JavaScript irá desenhar aqui) */
+#bgCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Seção Hero (Inicial) */
+.hero-section {
+    min-height: 100vh; /* Ocupa a tela inteira */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1; /* Garante que o conteúdo esteja acima do fundo */
+}
+
+.animated-title {
+    font-family: 'Orbitron', sans-serif; /* Fonte para o título principal */
+    font-size: 3.5em; /* Aumentado de 3em para 3.5em */
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue), 0 0 30px var(--neon-blue);
+    margin-bottom: 20px;
+    letter-spacing: 5px;
+    animation: pulse 1.5s infinite alternate; /* Efeito de pulsação no neon */
+}
+
+@keyframes pulse {
+    from { text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue); }
+    to { text-shadow: 0 0 15px var(--neon-blue), 0 0 25px var(--neon-blue); }
+}
+
+.subtitle {
+    font-family: 'Orbitron', sans-serif; /* MUDADO: Fonte para o subtítulo agora é Orbitron */
+    font-size: 1.2em;
+    color: var(--neon-green);
+    text-shadow: 0 0 5px var(--neon-green);
+    margin-bottom: 40px;
+    line-height: 1.5;
+    text-transform: uppercase; /* Opcional: para imitar o estilo dos títulos */
+}
+
+.call-to-action {
+    background-color: transparent;
+    border: 2px solid var(--neon-pink);
+    color: var(--neon-pink);
+    padding: 15px 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px var(--neon-pink);
+}
+
+.call-to-action:hover {
+    background-color: var(--neon-pink);
+    color: var(--dark-bg);
+    box-shadow: 0 0 20px var(--neon-pink), 0 0 30px var(--neon-pink);
+    transform: scale(1.05);
+}
+
+/* Seções de Conteúdo */
+.content-sections {
+    padding: 50px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.content-block {
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo semi-transparente para o conteúdo */
+    border: 1px solid var(--neon-blue);
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    transition: opacity 1s ease-out, transform 1s ease-out; /* Transição para aparecer */
+    transform: translateY(50px); /* Começa abaixo */
+    opacity: 0; /* Começa invisível */
+    text-align: justify; /* Alinhamento justificado para o corpo do texto */
+}
+
+.content-block.hidden {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.content-block.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.content-block h2 {
+    font-family: 'Orbitron', sans-serif; /* Fonte para o segundo título (h2) */
+    color: var(--neon-green); /* Cor verde */
+    font-size: 2em;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-shadow: 0 0 8px var(--neon-green); /* Sombra neon verde */
+    text-align: center; /* Centraliza o h2 dentro do bloco */
+}
+
+.content-block p, .content-block ul, .content-block ul li {
+    font-family: 'Roboto', sans-serif; /* Garante que todas as explicações usem Roboto */
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: var(--text-color);
+    text-align: justify; /* Alinhamento justificado */
+}
+
+.content-block ul {
+    list-style: none; /* Remove marcadores padrão */
+    padding: 0;
+}
+
+.content-block ul li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.content-block ul li::before {
+    content: '⚡'; /* Ícone de raio como marcador */
+    color: var(--neon-green);
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* Quiz Section */
+.quiz-section {
+    padding: 50px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.quiz-block {
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid var(--neon-pink); /* Borda rosa para o quiz */
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.5); /* Sombra rosa */
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    transform: translateY(50px);
+    opacity: 0;
+}
+
+.quiz-block.hidden {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.quiz-block.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.quiz-block h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--neon-pink); /* Título do quiz em rosa */
+    font-size: 2em;
+    margin-top: 0;
+    margin-bottom: 30px;
+    text-shadow: 0 0 8px var(--neon-pink);
+    text-align: center;
+}
+
+.question {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2em;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaçamento entre os botões */
+}
+
+.option-button {
+    background-color: transparent;
+    border: 2px solid var(--neon-blue);
+    color: var(--neon-blue);
+    padding: 12px 20px;
+    font-size: 1em;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px var(--neon-blue);
+    text-align: left; /* Alinha o texto à esquerda nos botões */
+    white-space: normal; /* Permite quebras de linha no texto do botão */
+    word-wrap: break-word; /* Garante que o texto quebre se for muito longo */
+}
+
+.option-button:hover {
+    background-color: rgba(0, 255, 255, 0.2); /* Fundo sutil ao passar o mouse */
+    color: var(--neon-blue);
+    box-shadow: 0 0 15px var(--neon-blue);
+}
+
+.option-button.correct {
+    background-color: var(--correct-answer);
+    color: var(--dark-bg);
+    border-color: var(--correct-answer);
+    box-shadow: 0 0 15px var(--correct-answer);
+    font-weight: bold;
+}
+
+.option-button.wrong {
+    background-color: var(--wrong-answer);
+    color: var(--dark-bg);
+    border-color: var(--wrong-answer);
+    box-shadow: 0 0 15px var(--wrong-answer);
+    font-weight: bold;
+}
+
+.option-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.result-message {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.3em;
+    text-align: center;
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+.result-message.correct {
+    color: var(--correct-answer);
+    text-shadow: 0 0 10px var(--correct-answer);
+}
+
+.result-message.wrong {
+    color: var(--wrong-answer);
+    text-shadow: 0 0 10px var(--wrong-answer);
+}
+
+/* Responsividade Básica */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 10px;
+    }
+    .animated-title {
+        font-size: 2.5em; /* Ajuste para telas menores */
+        letter-spacing: 2px;
+    }
+    .subtitle {
+        font-size: 1.1em; /* Ajuste para telas menores */
+    }
+    .call-to-action {
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+    .content-block, .quiz-block {
+        padding: 20px;
+    }
+    .content-block h2, .quiz-block h2 {
+        font-size: 1.8em;
+    }
+    .content-block p, .content-block ul, .content-block ul li,
+    .question, .option-button {
+         font-size: 1em; /* Ajusta o tamanho da fonte para telas menores */
+    }
+}
+
+@media (max-width: 480px) {
+    .animated-title {
+        font-size: 2em;
+    }
+    .subtitle {
+        font-size: 0.9em;
+    }
+    .call-to-action {
+        font-size: 0.9em;
+    }
+    .option-button {
+        padding: 10px 15px;
+    }
+}
